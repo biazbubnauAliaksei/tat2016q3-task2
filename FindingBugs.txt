@@ -1,0 +1,79 @@
+Boy class:
+
+1. August cannot be correct option in this case. Its never be summer month this way.
+
+public boolean isSummerMonth() {
+        return Month.JUNE.equals(getBirthdayMonth()) || Month.JULY.equals(getBirthdayMonth()) && Month.AUGUST.equals(getBirthdayMonth());
+    }
+
+
+2. Double value from getWealth() should be compared with appropriate value
+
+ public boolean isRich() {
+        return getWealth() >= 1_000_000;
+    }
+
+
+3, 4. After invocation constructor by chain in current cases lead to NullPointerException
+    public Boy(Month birthdayMonth, double wealth) {
+        this(birthdayMonth, wealth, null);
+    }
+
+    public Boy(Month birthdayMonth) {
+        this(birthdayMonth, 0, null);
+    }
+
+     public Boy(Month birthdayMonth, double wealth, Girl girlFriend) {
+        this.birthdayMonth = birthdayMonth;
+        this.wealth = wealth;
+        this.girlFriend = girlFriend;
+        this.girlFriend.setBoyFriend(this);
+    }
+
+
+
+5. Money should be decreased, not increrased.
+
+     public void spendSomeMoney(double amountForSpending) {
+        if (amountForSpending <= getWealth()) {
+            wealth += amountForSpending;
+        } else {
+            throw new RuntimeException(String.format("Not enough money! Requested amount is %s$ but you can't spend more then %s$", amountForSpending, getWealth()));
+        }
+    }
+
+
+
+Girl class:
+
+6, 7 Bugs in constuctor as in 3,4 points
+
+   public Girl(boolean isPretty, boolean isSlimFriendGotAFewKilos, Boy boyFriend) {
+        this.isPretty = isPretty;
+        this.isSlimFriendGotAFewKilos = isSlimFriendGotAFewKilos;
+        this.boyFriend = boyFriend;
+        this.boyFriend.setGirlFriend(this);
+    }
+
+    public Girl(boolean isPretty, boolean isSlimFriendGotAFewKilos) {
+        this(isPretty, isSlimFriendGotAFewKilos, null);
+    }
+
+    public Girl(boolean isPretty) {
+        this(isPretty, false, null);
+    }
+
+
+
+8.  Lead to NullPointerException in invoked constructor
+
+    public Girl() {
+        this(false, true, null);
+    }
+
+
+9.	Inappropriate construction. Always false when getBoyFriend().isRich() equals true. NullPointerException when getBoyFriend() not null
+
+    public boolean isBoyfriendRich() {
+        return getBoyFriend() == null && getBoyFriend().isRich();
+    }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="total-tests">
+    <test name="total">
+        <groups>
+            <run>
+                <include name=".*total"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.epam.gomel.homework.BoyTest"/>
+            <class name="com.epam.gomel.homework.GirlTest"/>
+        </classes>
+    </test>
+</suite>
