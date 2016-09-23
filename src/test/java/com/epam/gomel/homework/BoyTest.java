@@ -13,7 +13,7 @@ public class BoyTest {
     private Boy richBoy;
     private Girl girl;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
         poorBoy = new Boy(Month.DECEMBER, 1d);
         richBoy = new Boy(Month.AUGUST, 9999999d);

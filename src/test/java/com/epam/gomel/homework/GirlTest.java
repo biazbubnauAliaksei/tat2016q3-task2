@@ -14,7 +14,7 @@ public class GirlTest {
     Boy richBoy;
     Boy poorBoy;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUp() {
         girl = new Girl(true);
         richBoy = new Boy(Month.AUGUST, 9999999d);
